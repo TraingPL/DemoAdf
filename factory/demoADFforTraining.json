@@ -1,0 +1,17 @@
+{
+	"name": "demoADFforTraining",
+	"properties": {
+		"globalParameters": {
+			"abc": {
+				"type": "string",
+				"value": "pqr"
+			}
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c8cae0c7-9919-4230-a1de-f31b2f624b6b",
+		"tenantId": "fdfcc3f3-02a7-4b5d-a854-8ddb811893ac"
+	}
+}

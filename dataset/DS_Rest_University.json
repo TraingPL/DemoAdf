@@ -1,0 +1,24 @@
+{
+	"name": "DS_Rest_University",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MyRestSource",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"CountryName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@concat('http://universities.hipolabs.com/search?country=', dataset().CountryName)",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,58 @@
+{
+	"name": "PL_DataFlow_Run",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow1",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"source1": {
+								"SqlTable": {
+									"value": "@pipeline().parameters.TableName",
+									"type": "Expression"
+								},
+								"Schema": {
+									"value": "@pipeline().parameters.SchemaName",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"continueOnError": true
+				}
+			}
+		],
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			},
+			"SchemaName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Dynamic Pipelines"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-06T16:37:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

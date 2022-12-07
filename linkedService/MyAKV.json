@@ -1,0 +1,11 @@
+{
+	"name": "MyAKV",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://KVTrain.vault.azure.net/"
+		}
+	}
+}

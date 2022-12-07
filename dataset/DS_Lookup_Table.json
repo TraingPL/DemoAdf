@@ -1,0 +1,13 @@
+{
+	"name": "DS_Lookup_Table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MsSqlLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

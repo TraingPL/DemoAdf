@@ -1,0 +1,29 @@
+{
+	"name": "DS_Json_Data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MyStorageLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Country": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Country",
+					"type": "Expression"
+				},
+				"folderPath": "raw",
+				"fileSystem": "demo"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

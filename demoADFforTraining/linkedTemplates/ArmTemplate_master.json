@@ -1,0 +1,97 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "demoADFforTraining"
+		},
+		"MsSqlLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'MsSqlLS'"
+		},
+		"MyStorageLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'MyStorageLS'"
+		},
+		"MyAKV_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://KVTrain.vault.azure.net/"
+		},
+		"MyRestSource_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://universities.hipolabs.com/"
+		},
+		"MyStorageLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://demosatn.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "demoADFforTraining_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"MsSqlLS_connectionString": {
+						"value": "[parameters('MsSqlLS_connectionString')]"
+					},
+					"MyStorageLS_accountKey": {
+						"value": "[parameters('MyStorageLS_accountKey')]"
+					},
+					"MyAKV_properties_typeProperties_baseUrl": {
+						"value": "[parameters('MyAKV_properties_typeProperties_baseUrl')]"
+					},
+					"MyRestSource_properties_typeProperties_url": {
+						"value": "[parameters('MyRestSource_properties_typeProperties_url')]"
+					},
+					"MyStorageLS_properties_typeProperties_url": {
+						"value": "[parameters('MyStorageLS_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "demoADFforTraining_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'demoADFforTraining_ArmTemplate_0')]"
+			]
+		}
+	]
+}
